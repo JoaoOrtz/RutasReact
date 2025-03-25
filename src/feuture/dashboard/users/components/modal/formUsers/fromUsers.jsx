@@ -29,7 +29,7 @@ export const FormUsers = ({InsertData, users}) =>{
     const Save = (e) =>{
         e.preventDefault()
         //Validar el formulario antes de guardar
-        if (!ValidacionBasio()) {
+        if (!ValidacionVacio()) {
             return
         }
 
@@ -50,7 +50,7 @@ export const FormUsers = ({InsertData, users}) =>{
     }
 
     // Validacion si estan lleno los campos
-    const ValidacionBasio = () =>{
+    const ValidacionVacio = () =>{
         if (document === 0) {
             setError("Ingrese el documento")
             return false
@@ -85,9 +85,15 @@ export const FormUsers = ({InsertData, users}) =>{
         const validacionEmail = users.some((e)=> e.email === email)
         const validacionTel = users.some((e)=> e.tel === parseInt(tel))
         const validacionDocument = users.some((e)=> e.document === parseInt(document) )
-        
-        if (validacionDocument || validacionTel || validacionEmail) {
-            setError("No se pueden el mismo usuario")
+
+        if (validacionDocument) {
+            setError("No se pueden el mismo documento")
+            return false
+        }else if(validacionTel){
+            setError("No se pueden el mismo telefono")
+            return false
+        }else if(validacionEmail) {
+            setError("No se pueden el mismo correo electronico")
             return false
         }else {
             setError("")

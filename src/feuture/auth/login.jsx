@@ -7,8 +7,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const [dataAccess, setDataAccess] = useState(() => {
-        const savedUsers = JSON.parse(localStorage.getItem("Usuarios")) || [];
-        const hardcodedUser = {
+        const savedUsers = JSON.parse(localStorage.getItem("Usuarios")) || [{
             email: "joaoestid@gmail.com",
             password: "hola123",
             name: "Joao",
@@ -17,16 +16,7 @@ const Login = () => {
             tel: 3008239274,
             selectedRoles: "1",
             state: "true",
-            productos: JSON.parse(localStorage.getItem("Productos")) || [],
-        };
-    
-        // Verificar si el usuario hardcodeado ya existe en savedUsers
-        const userExists = savedUsers.some(user => user.email === hardcodedUser.email);
-    
-        // Si no existe, agregarlo al array
-        if (!userExists) {
-            return [hardcodedUser, ...savedUsers];
-        }
+        },];
     
         // Si ya existe, devolver solo savedUsers
         return savedUsers;
