@@ -9,9 +9,6 @@ const Layout = () => {
     // Verificar si el usuario actual es admin (rol "1")
     const isAdmin = currentUser && currentUser.selectedRoles === "1";
 
-    console.log("Usuario actual:", currentUser);
-    console.log("¿Es admin?:", isAdmin);
-
     const Exit = () => {
         localStorage.removeItem("currentUser"); // Eliminar el usuario actual
         navegate("/");
@@ -33,6 +30,9 @@ const Layout = () => {
                         </li>
                         <li>
                             {isAdmin && <Link to="/dashboard/users" className="block py-2 px-4 hover:bg-blue-700 rounded">Usuarios</Link>}
+                        </li>
+                        <li>
+                            <Link to="/dashboard/APPS" className="block py-2 px-4 hover:bg-blue-700 rounded">Consumo de app</Link>
                         </li>
                     </ul>
                 </nav>
